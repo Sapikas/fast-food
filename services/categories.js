@@ -2,7 +2,7 @@ const Category = require('../models/categories');
 
 exports.getCategories = async () => {
   try {
-    const categories = await Category.find().sort('name');
+    const categories = await Category.find().select('-__v').sort('name');
     if (!categories) {
       const error = new Error('Could not find categories');
       error.statusCode = 404;

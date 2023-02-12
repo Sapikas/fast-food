@@ -10,6 +10,9 @@ This is the REST API documentation for an online delivery application. The API p
 2. Start the development server by running the following command:
 `npm run start:dev`
 
+3. Start the server by running the following command:
+`npm start`
+
 ### Users Endpoints
 
 #### Login a User
@@ -40,7 +43,7 @@ This endpoint returns a list of all categories.
 `200 OK` on success.
 `404 Not Found` if categories do not exist.
 
-```{"msg":"Success","data":[{"_id":"63e2b85de877c0deffba5eb8","name":"Appetizers","__v":0},{"_id":"63e2b866e877c0deffba5eba","name":"Drinks","__v":0},{"_id":"63e2b86de877c0deffba5ebc","name":"Main Dishes","__v":0}]}```
+```{"msg":"Success","data":[{"_id":"63e2b85de877c0deffba5eb8","name":"Appetizers"},{"_id":"63e2b866e877c0deffba5eba","name":"Drinks"},{"_id":"63e2b86de877c0deffba5ebc","name":"Main Dishes"}]}```
 
 ### Products Endpoints
 
@@ -62,6 +65,9 @@ This endpoint returns a list of all products in a category.
 ##### Description 
 This endpoint allow a authenticated user to create a new product.
 
+##### Request Headers
+```{Authorization: Bearer ${token}}```
+
 ##### Request Body
 ```{"name":"Grilled Rib-Eye Steak","description":"Thick cut, aged rib-eye steak grilled to perfection and served with mashed potatoes and grilled asparagus. Topped with a red wine reduction sauce.","price":32.99,"imageUrl":"https://s3.us-east-2.amazonaws.com/maindishes-images/grilled-ribeye-steak.jpeg","categoryId":"63e2b86de877c0deffba5ebc"}```
 
@@ -79,6 +85,9 @@ This endpoint allow a authenticated user to create a new product.
 ##### Description 
 This endpoint allow a authenticated user to view all orders.
 
+##### Request Headers
+```{Authorization: Bearer ${token}}```
+
 ##### Response:
 `200 OK` on success.
 `401 Unauthorized` if the user is not authenticated.
@@ -91,6 +100,9 @@ This endpoint allow a authenticated user to view all orders.
 
 ##### Description 
 This endpoint allow a authenticated user to view an order.
+
+##### Request Headers
+```{Authorization: Bearer ${token}}```
 
 ##### Response:
 `200 OK` on success.

@@ -17,8 +17,8 @@ exports.getCategoryProducts = async (req, res, next) => {
 
 exports.createProduct = async (req, res, next) => {
   try {
-    const createProductMsg = await productService.createProduct(req);
-    res.status(201).json({ msg: createProductMsg });
+    await productService.createProduct(req);
+    res.status(201).json({ msg: 'Success' });
   } catch (err) {
     next(err);
   }

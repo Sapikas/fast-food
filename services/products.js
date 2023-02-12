@@ -71,7 +71,6 @@ exports.createProduct = async (req) => {
       category_id: categoryId
     });
     await product.save();
-    return 'Success';
   } catch (err) {
     throw err;
   }
