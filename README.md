@@ -73,7 +73,7 @@ This endpoint allow a authenticated user to create a new product.
 
 ##### Response:
 `201 Created` on success.
-`500 Bad Request` if any required field is missing.
+`500 Internal Server Error`
 
 ```{"msg": "Success"}```
 
@@ -124,6 +124,6 @@ This endpoint allow a guest user to create an order.
 `201 Created` on success.
 `404 Not Found` if some order product does not exist.
 `422 Unprocessable Entity` if the request body is invalid.
-`500 Bad Request` if any required field is missing.
+`500 Internal Server Error`
 
 ```{"msg": "Success"}```

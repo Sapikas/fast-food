@@ -33,7 +33,9 @@ exports.getOrder = async (req) => {
     }
     let products = [];
     for (let prod of order.products) {
-      const product = await Products.findById(prod.pid).select('-__v -category_id');
+      let product = await Products.findById(prod.pid).select('-__v -category_id');
+      product = product.toObject();
+      product.quantity = prod.quantity;
       products.push(product);
     }
     order.products = undefined;
@@ -44,17 +46,21 @@ exports.getOrder = async (req) => {
 }
 
 exports.createOrder = async (customer, products, totalAmount) => {
-  const newOrder = new Orders({
-    products: products,
-    total_amount: totalAmount,
-    name: customer.name,
-    email: customer.email,
-    phone_number: customer.phoneNumber,
-    street: customer.street,
-    apartment: customer.apartment,
-    city: customer.city,
-    zip: customer.zip,
-    country: customer.country
-  });
-  await newOrder.save();
+  try {
+    const newOrder = new Orders({
+      products: products,
+      total_amount: totalAmount,
+      name: customer.name,
+      email: customer.email,
+      phone_number: customer.phoneNumber,
+      street: customer.street,
+      apartment: customer.apartment,
+      city: customer.city,
+      zip: customer.zip,
+      country: customer.country
+    });
+    await newOrder.save();
+  } catch (err) {
+    throw err;
+  }
 }
