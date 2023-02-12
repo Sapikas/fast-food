@@ -18,6 +18,15 @@ exports.getOrders = async (req, res, next) => {
   }
 }
 
+exports.getOrder = async (req, res, next) => {
+  try {
+    const response = await ordersService.getOrder(req);
+    res.status(200).json({ msg: 'Success', data: response.order, products: response.products });
+  } catch (err) {
+    next(err);
+  }
+}
+
 exports.createOrder = async (req, res, next) => {
   try {
     const errors = validationResult(req);

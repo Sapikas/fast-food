@@ -15,19 +15,3 @@ exports.postLogin = async (req, res, next) => {
     next(err);
   }
 }
-
-// exports.postSignup = async (req, res, next) => {
-//   try {
-//     const { username, email, password } = req.body;
-//     const hashedPass = await bcrypt.hash(password, 12);
-//     const user = new Users({
-//       username: username,
-//       email: email,
-//       password: hashedPass
-//     });
-//     await user.save();
-//     res.status(201).json({ msg: 'Success' });
-//   } catch (err) {
-//     next(err);
-//   }
-// }

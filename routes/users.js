@@ -23,6 +23,4 @@ router.post('/',
   userController.postLogin
 );
 
-// router.post('/signup', userController.postSignup);
-
 module.exports = router;

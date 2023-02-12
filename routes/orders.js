@@ -7,12 +7,19 @@ const isAuth = require('../middlewares/is-auth');
 
 router.get('/', isAuth, orderController.getOrders);
 
-router.post('/', //add extra validation?
+router.get('/:orderId', isAuth, orderController.getOrder);
+
+router.post('/',
   [
     body('customer.email')
       .isEmail()
       .withMessage('Please enter a valid email.')
-      .normalizeEmail()
+      .normalizeEmail(),
+    body('customer.phoneNumber')
+      .isNumeric()
+      .withMessage('Phone number must be a numeric value')
+      .isLength({ min: 10, max: 15 })
+      .withMessage('Phone number must be between 10 and 15 digits long'),
   ],
   orderController.createOrder
 );

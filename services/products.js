@@ -35,7 +35,7 @@ exports.findCategoryProducts = async (req) => {
     const currentPage = req.query.currentPage || 1;
     const perPage = 2;
     const products = await Products.find({ category_id: categoryId })
-                      .select('-category_id -_id -__v')
+                      .select('-category_id -__v')
                       .skip((currentPage - 1) * perPage).limit(perPage);
     if (currency && currency !== 'EUR') {
       await convertCurrency(currency, products);
@@ -48,7 +48,7 @@ exports.findCategoryProducts = async (req) => {
 
 exports.findProduct = async (id) => {
   try {
-    const product = await Products.findOne({ _id: id }).select('price');
+    const product = await Products.findById(id).select('price');
     if (!product) {
       const error = new Error('Could not find product');
       error.statusCode = 404;
