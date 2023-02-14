@@ -48,7 +48,8 @@ This endpoint returns a list of all categories.
 ### Products Endpoints
 
 #### View Category Products
-`GET /products?currentPage=${page}&categoryId=${id}`
+`GET /products?currentPage=${page}&categoryId=${id}&currency=${cur}`
+NOTE: if you don't send currency parameter the api returns Euro.
 
 ##### Description 
 This endpoint returns a list of all products in a category.
